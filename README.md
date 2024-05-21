@@ -1,5 +1,6 @@
-participantes:
-ignacio jose rocha
-pablo torres
-ivan nieva
-jesica belen urey
+## Participantes:
+
+- Ignacio Jose Rocha
+- Pablo Torres
+- Ivan Nieva
+- Jesica Belen Urey
