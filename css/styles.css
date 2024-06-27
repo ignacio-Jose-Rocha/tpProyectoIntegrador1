@@ -77,6 +77,74 @@ div.gallery:hover {
       opacity: 1;
     }
   }
+  @keyframes movimientoCirculos {
+    0% {
+      transform: translateX(0px) translateY(0px);
+    }
+    25% {
+      transform: translateX(100px) translateY(-50px);
+    }
+    50% {
+      transform: translateX(200px) translateY(0px);
+    }
+    75% {
+      transform: translateX(100px) translateY(50px);
+    }
+    100% {
+      transform: translateX(0px) translateY(0px);
+    }
+  }  
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; 
+    position: relative; 
+  }
+  
+  .contenedor-circulos {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1; 
+  }
+  
+  .circulo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: linear-gradient(to right, #1abc9c, #16a085);
+    position: absolute;
+    animation: movimientoCirculos 4s infinite ease-in-out;
+  }
+  
+  .otro-contenido {
+    position: relative;
+    z-index: 2;
+  }
+  @keyframes movimientoCirculos {
+    0% {
+      transform: translateX(0px) translateY(0px);
+    }
+    25% {
+      transform: translateX(100px) translateY(-50px);
+    }
+    50% {
+      transform: translateX(200px) translateY(0px);
+    }
+    75% {
+      transform: translateX(100px) translateY(50px);
+    }
+    100% {
+      transform: translateX(0px) translateY(0px);
+    }
+  }
+
   
   div.gallery img {
     animation: fade-in 1.5s ease-out;
