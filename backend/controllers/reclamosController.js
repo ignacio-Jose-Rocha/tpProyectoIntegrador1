@@ -35,17 +35,16 @@ exports.reclamos = async (req, res) => {
     }
   }
   exports.crearReclamo = async (req, res) => {
-    const { idUsuarioCreador, asunto, descripcion, fechaCreado, fechaFinalizado, fechaCancelado, idReclamoEstado, idReclamoTipo, idUsuarioFinalizador } = req.body;
+    const { idUsuarioCreador, asunto, descripcion, fechaFinalizado, fechaCancelado, idReclamoEstado, idReclamoTipo, idUsuarioFinalizador } = req.body;
+    const fechaCreado = new Date().toISOString().slice(0, 19).replace('T', ' '); 
     try {
-      
-        const [rows] = await pool.query('INSERT INTO reclamos SET ?', { idUsuarioCreador, asunto, descripcion, fechaCreado, fechaFinalizado, fechaCancelado, idReclamoEstado, idReclamoTipo, idUsuarioFinalizador });
-        res.json({ id: rows.insertId, idUsuarioCreador, asunto, descripcion, fechaCreado, fechaFinalizado, fechaCancelado, idReclamoEstado, idReclamoTipo, idUsuarioFinalizador });
+      const [rows] = await pool.query('INSERT INTO reclamos SET ?', { idUsuarioCreador, asunto, descripcion, fechaCreado, fechaFinalizado, fechaCancelado, idReclamoEstado, idReclamoTipo, idUsuarioFinalizador });
+      res.json({ id: rows.insertId, idUsuarioCreador, asunto, descripcion, fechaCreado, fechaFinalizado, fechaCancelado, idReclamoEstado, idReclamoTipo, idUsuarioFinalizador });
     } catch (error) {
       console.error('Error al crear el reclamo:', error);
       res.status(500).json({ error: 'Error al crear el reclamo' });
     }
   };
-
   async function enviarCorreoCancelacion(idReclamo) {
     try {
       const [reclamo] = await pool.query('SELECT idUsuarioCreador FROM reclamos WHERE idReclamo = ?', [idReclamo]);

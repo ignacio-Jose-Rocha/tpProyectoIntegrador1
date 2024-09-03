@@ -64,8 +64,8 @@ exports.crearCliente = async (req, res) => {
       return res.status(400).json({ error: 'Todos los campos son obligatorios' });
     }
  
-    const [usuarios] = await pool.query('SELECT * FROM usuarios WHERE correoElectronico = ?', [correoElectronico]);
-    if (usuarios.length > 0) {
+     const [usuariosExistentes] = await pool.query('SELECT * FROM usuarios WHERE correoElectronico = ? AND nombre = ? AND apellido = ?', [correoElectronico, nombre, apellido]);
+    if (usuariosExistentes.length > 0) {
       return res.status(400).json({ error: 'Datos ya cargados anteriormente' });
     }
 
